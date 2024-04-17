@@ -18,8 +18,11 @@
 			if (user) {
 				shouldRender = true;
 			} else {
+				const wasRendered = shouldRender;
 				shouldRender = false;
-				signInWithPopup(auth, provider);
+				if (!wasRendered) {
+					await signInWithPopup(auth, provider);
+				}
 			}
 		});
 	});
