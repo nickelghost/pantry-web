@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { signOut } from 'aws-amplify/auth';
+	import firebaseApp from '$lib/firebase/firebaseApp';
+	import { getAuth, signOut } from 'firebase/auth';
 	import Button from './Button.svelte';
 </script>
 
@@ -9,7 +10,7 @@
 		--background="rgb(73, 106, 226)"
 		--color="white"
 		style="grid-column-start: 3;"
-		on:click={() => signOut()}>Log out</Button
+		on:click={() => signOut(getAuth(firebaseApp))}>Log out</Button
 	>
 </header>
 

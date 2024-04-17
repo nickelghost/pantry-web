@@ -1,22 +1,27 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
+	import firebaseApp from '$lib/firebase/firebaseApp';
 	import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
-	import { getCurrentUser, signInWithRedirect } from 'aws-amplify/auth';
+	import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 	import 'normalize.css';
 	import { onMount } from 'svelte';
 	import Modal from 'svelte-simple-modal';
 
 	const queryClient = new QueryClient();
+	const provider = new GoogleAuthProvider();
+	const auth = getAuth(firebaseApp);
 
 	let shouldRender = false;
 
 	onMount(async () => {
-		try {
-			await getCurrentUser();
-			shouldRender = true;
-		} catch {
-			await signInWithRedirect();
-		}
+		onAuthStateChanged(auth, async (user) => {
+			if (user) {
+				shouldRender = true;
+			} else {
+				shouldRender = false;
+				signInWithPopup(auth, provider);
+			}
+		});
 	});
 </script>
 
