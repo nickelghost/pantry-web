@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Item } from '$lib/entities/Item';
 	import { createEventDispatcher } from 'svelte';
+	import DeleteItemButton from './DeleteItemButton.svelte';
 	import EditItemButton from './EditItemButton.svelte';
-	import ItemDeleteButton from './ItemDeleteButton.svelte';
 	import MoveItemButton from './MoveItemButton.svelte';
 
 	export let i: Item;
@@ -67,7 +67,7 @@
 	<div>
 		<MoveItemButton {i} on:move={() => dispatch('update')} />
 		<EditItemButton {i} on:edit={() => dispatch('update')} />
-		<ItemDeleteButton {i} on:delete={() => dispatch('update')} />
+		<DeleteItemButton {i} on:delete={() => dispatch('update')} />
 	</div>
 </div>
 

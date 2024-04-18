@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Location } from '../entities/Location';
+	import DeleteLocationButton from './DeleteLocationButton.svelte';
 	import EditLocationButton from './EditLocationButton.svelte';
-	import LocationDeleteButton from './LocationDeleteButton.svelte';
 	import Section from './Section.svelte';
 
 	export let l: Location;
@@ -12,10 +12,10 @@
 <Section name={l.name}>
 	<div slot="heading">
 		{#if onEdit}
-			<EditLocationButton {l} on:edit={onEdit}>✏️</EditLocationButton>
+			<EditLocationButton {l} on:edit={onEdit} />
 		{/if}
 		{#if onDelete}
-			<LocationDeleteButton {l} on:delete={onDelete}>🗑️</LocationDeleteButton>
+			<DeleteLocationButton {l} on:delete={onDelete} />
 		{/if}
 	</div>
 	<slot />
