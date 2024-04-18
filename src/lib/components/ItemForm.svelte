@@ -40,7 +40,7 @@
 		label="Bought at"
 		name="boughtAt"
 		type="date"
-		value={i && i.boughtAt.toISOString().split('T')[0]}
+		value={i ? i.boughtAt.toISOString().split('T')[0] : new Date().toISOString().split('T')[0]}
 	/>
 	<Input
 		label="Opened at"
