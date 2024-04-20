@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-22.04
     container: node:20-alpine
     steps:
-      - name: Install pnpm
-        run: npm i -g pnpm
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: Install pnpm
+        run: npm i -g pnpm
       - name: Install dependencies
         run: pnpm i
       - name: Build the site
