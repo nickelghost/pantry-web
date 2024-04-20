@@ -18,6 +18,11 @@ jobs:
         run: pnpm i
       - name: Build the site
         run: pnpm run build
+        env:
+          API_URL: https://api.pantry.nickelghost.com
+          FIREBASE_API_KEY: '${{ secrets.FIREBASE_API_KEY }}'
+          FIREBASE_PROJECT_ID: personal-419019
+          FIREBASE_AUTH_DOMAIN: pantry.nickelghost.com
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
