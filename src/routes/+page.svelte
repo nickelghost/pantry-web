@@ -9,9 +9,21 @@
 	import Section from '$lib/components/Section.svelte';
 	import { createQuery } from '@tanstack/svelte-query';
 
+	let selectedTags: string[] = [];
+
+	function toggleTag(tag: string) {
+		if (selectedTags.includes(tag)) {
+			selectedTags = selectedTags.filter((t) => t !== tag);
+		} else {
+			selectedTags = [...selectedTags, tag];
+		}
+	}
+
+	$: selectedTags && $query.refetch();
+
 	const query = createQuery({
-		queryKey: ['locations'],
-		queryFn: LocationsRepo.index,
+		queryKey: ['locations', selectedTags],
+		queryFn: () => LocationsRepo.index(selectedTags),
 		refetchOnWindowFocus: true
 	});
 </script>
@@ -30,13 +42,23 @@
 {:else if $query.isSuccess && $query.data}
 	{#each $query.data.locations as l}
 		<LocationSection {l} onEdit={$query.refetch} onDelete={$query.refetch}>
-			<ItemsList items={l.items} on:update={() => $query.refetch()} />
+			<ItemsList
+				items={l.items}
+				{selectedTags}
+				on:update={() => $query.refetch()}
+				on:toggleTag={(e) => toggleTag(e.detail)}
+			/>
 		</LocationSection>
 	{/each}
 
 	{#if $query.data.remainingItems.length > 0}
 		<Section>
-			<ItemsList items={$query.data.remainingItems} on:update={() => $query.refetch()} />
+			<ItemsList
+				items={$query.data.remainingItems}
+				{selectedTags}
+				on:update={() => $query.refetch()}
+				on:toggleTag={(e) => toggleTag(e.detail)}
+			/>
 		</Section>
 	{/if}
 {/if}

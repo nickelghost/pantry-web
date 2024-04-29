@@ -6,6 +6,7 @@
 	import MoveItemButton from './MoveItemButton.svelte';
 
 	export let i: Item;
+	export let selectedTags: string[] = [];
 
 	const dispatch = createEventDispatcher();
 
@@ -23,6 +24,7 @@
 </script>
 
 <h2>{i.name}</h2>
+
 {#if i.type || i.price || i.lifespan}
 	<h3>
 		{#if i.type}
@@ -38,6 +40,7 @@
 		{/if}
 	</h3>
 {/if}
+
 <div class="row">
 	<div class="timestamp">
 		{#if i.boughtAt}
@@ -71,6 +74,22 @@
 	</div>
 </div>
 
+{#if i.tags}
+	<ul class="tags">
+		{#each i.tags as tag}
+			<li class="tag" class:tag-selected={selectedTags.includes(tag)}>
+				<button
+					on:click={() => {
+						dispatch('toggleTag', tag);
+					}}
+				>
+					#{tag}
+				</button>
+			</li>
+		{/each}
+	</ul>
+{/if}
+
 <style>
 	h2 {
 		font-size: 1.5rem;
@@ -93,6 +112,7 @@
 	.row {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr) max-content;
+		margin-bottom: 8px;
 	}
 
 	.timestamp {
@@ -105,5 +125,35 @@
 
 	.timestamp-error {
 		color: hsl(0, 100%, 50%);
+	}
+
+	ul.tags {
+		list-style: none;
+		padding: 0;
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.tag {
+		color: hsl(190, 76%, 74%);
+		padding: 2px 4px;
+	}
+
+	.tag-selected {
+		color: black;
+		background: hsl(190, 76%, 74%);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.tag button {
+		color: inherit;
+		background: inherit;
+		border: inherit;
+		font: inherit;
 	}
 </style>
