@@ -83,7 +83,7 @@
 	h1,
 	h2,
 	button {
-		font-family: 'Odor Mean Chey', sans-serif;
+		font-family: 'Aleo', serif;
 	}
 
 	#content {
