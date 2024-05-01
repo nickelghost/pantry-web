@@ -6,6 +6,7 @@
 	import Form from './Form.svelte';
 	import Input from './Input.svelte';
 	import LocationInput from './LocationInput.svelte';
+	import TagsInput from './TagsInput.svelte';
 
 	export let i: undefined | Item = undefined;
 	export let onSubmit: (fields: ItemFormFields) => void;
@@ -25,7 +26,7 @@
 		const fields: ItemFormFields = {
 			name: formData.get('name') as string,
 			type: formData.get('type') ? (formData.get('type') as string) : null,
-			tags: formData.get('tags') ? (formData.get('tags') as string).split(',') : [],
+			tags: formData.getAll('tags') as string[],
 			boughtAt: new Date(formData.get('boughtAt') as string),
 			openedAt: formData.get('openedAt') ? new Date(formData.get('openedAt') as string) : null,
 			expiresAt: formData.get('expiresAt') ? new Date(formData.get('expiresAt') as string) : null,
@@ -48,12 +49,7 @@
 <Form on:submit={handleSubmit}>
 	<Input label="Name" name="name" value={i && i.name} error={vErrors?.name?._errors[0]} />
 	<Input label="Type" name="type" value={i && i.type} error={vErrors?.type?._errors[0]} />
-	<Input
-		label="Tags (separated by ,)"
-		name="tags"
-		value={i?.tags && i.tags.join(',')}
-		error={vErrors?.tags?._errors[0]}
-	/>
+	<TagsInput label="Tags" name="tags" value={i?.tags} error={vErrors?.tags?._errors[0]} />
 	<Input
 		label="Bought at"
 		name="boughtAt"
