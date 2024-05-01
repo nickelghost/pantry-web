@@ -45,8 +45,8 @@
 {#if !shouldRender && !isLoading}
 	{#if window.location.hostname === 'localhost'}
 		<form on:submit={handleEmailSignIn}>
-			<Input type="email" label="Email" name="email" />
-			<Input type="password" label="Password" name="password" />
+			<Input type="email" label="Email" name="email" error={null} />
+			<Input type="password" label="Password" name="password" error={null} />
 			<Button type="submit">Sign in</Button>
 		</form>
 	{:else}
