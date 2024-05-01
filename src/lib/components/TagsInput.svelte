@@ -20,6 +20,10 @@
 		const formData = new FormData(e.target as HTMLFormElement);
 		const newTag = formData.get(`${name}New`) as string;
 
+		if (newTag === '') {
+			return;
+		}
+
 		inputEl.value = '';
 		tags = [...tags, newTag];
 	}
