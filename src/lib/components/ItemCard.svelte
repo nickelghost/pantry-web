@@ -124,7 +124,7 @@
 	}
 
 	.timestamp-error {
-		color: hsl(0, 100%, 50%);
+		color: hsl(0, 100%, 60%);
 	}
 
 	ul.tags {
