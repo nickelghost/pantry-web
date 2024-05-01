@@ -14,12 +14,12 @@ export default class LocationsRepo {
 		};
 	}
 
-	static async index(tags: string[]): Promise<{ locations: Location[]; remainingItems: Item[] }> {
+	static async index(tags?: string[]): Promise<{ locations: Location[]; remainingItems: Item[] }> {
 		const accessToken = await getAccessToken();
 
 		const url = new URL(`${API_URL}/locations`);
 
-		if (tags.length > 0) {
+		if (tags && tags.length > 0) {
 			url.searchParams.append('tags', tags.join(','));
 		}
 

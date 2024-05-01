@@ -15,7 +15,7 @@
 
 	const query = createQuery({
 		queryKey: ['locations'],
-		queryFn: LocationsRepo.index,
+		queryFn: () => LocationsRepo.index(),
 		refetchOnWindowFocus: true
 	});
 
