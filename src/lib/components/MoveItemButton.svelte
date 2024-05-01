@@ -4,7 +4,6 @@
 	import type { Item } from '$lib/entities/Item';
 	import { createQuery } from '@tanstack/svelte-query';
 	import { createEventDispatcher } from 'svelte';
-	import Button from './Button.svelte';
 	import IconButton from './IconButton.svelte';
 
 	export let i: Item;
@@ -41,13 +40,13 @@
 			{#each $query.data.locations as location}
 				{#if location.id !== i.locationId}
 					<li>
-						<Button isSquare on:click={(e) => onClick(e, location.id)}>{location.name}</Button>
+						<button on:click={(e) => onClick(e, location.id)}>{location.name}</button>
 					</li>
 				{/if}
 			{/each}
 			{#if i.locationId !== null}
 				<li>
-					<Button isSquare on:click={(e) => onClick(e, null)}>None</Button>
+					<button on:click={(e) => onClick(e, null)}>None</button>
 				</li>
 			{/if}
 		</ul>
@@ -60,8 +59,21 @@
 	}
 
 	.list {
+		background: hsl(223, 11%, 12%);
+		border: 1px solid rgb(140, 149, 164);
 		list-style-type: none;
 		padding: 0;
 		position: absolute;
+	}
+
+	li:not(:last-child) {
+		border-bottom: 1px solid rgb(140, 149, 164);
+	}
+
+	button {
+		background: none;
+		border: none;
+		color: white;
+		padding: 8px 16px;
 	}
 </style>
