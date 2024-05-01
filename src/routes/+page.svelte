@@ -19,7 +19,11 @@
 		}
 	}
 
-	$: selectedTags && $query.refetch();
+	$: onSelectedTagsChange(selectedTags);
+
+	function onSelectedTagsChange(_: string[]) {
+		$query.refetch();
+	}
 
 	const query = createQuery({
 		queryKey: ['locations', selectedTags],
