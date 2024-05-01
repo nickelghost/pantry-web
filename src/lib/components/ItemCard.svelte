@@ -25,12 +25,12 @@
 
 <h2>{i.name}</h2>
 
-{#if i.type || i.price || i.lifespan}
+{#if i.type || i.price || i.price === 0 || i.lifespan}
 	<h3>
 		{#if i.type}
 			<span>{i.type}</span>
 		{/if}
-		{#if i.price}
+		{#if i.price || i.price === 0}
 			<span class="price-info">
 				{getPriceString(i.price)}
 			</span>
