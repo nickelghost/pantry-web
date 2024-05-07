@@ -18,10 +18,10 @@
 
 		const formData = new FormData(e.target as HTMLFormElement);
 
-		const rawPriceStr = formData.get('price') as string;
-		const priceStr = /[\.\,]/.test(rawPriceStr)
-			? rawPriceStr.replace(/[\.\,]/g, '')
-			: rawPriceStr + '00';
+		const priceStr = formData.get('price') as string;
+		const price: number | null = priceStr
+			? parseInt(/[\.\,]/.test(priceStr) ? priceStr.replace(/[\.\,]/g, '') : priceStr + '00')
+			: null;
 
 		const fields: ItemFormFields = {
 			name: formData.get('name') as string,
@@ -31,7 +31,7 @@
 			openedAt: formData.get('openedAt') ? new Date(formData.get('openedAt') as string) : null,
 			expiresAt: formData.get('expiresAt') ? new Date(formData.get('expiresAt') as string) : null,
 			lifespan: formData.get('lifespan') ? parseInt(formData.get('lifespan') as string) : null,
-			price: parseInt(priceStr),
+			price,
 			locationId: formData.get('locationId') ? (formData.get('locationId') as string) : null
 		};
 
