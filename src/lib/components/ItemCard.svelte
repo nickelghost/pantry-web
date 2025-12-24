@@ -63,7 +63,7 @@
 				class:timestamp-warning={getDaysDiff(i.expiresAt) <= 3}
 				class:timestamp-error={getDaysDiff(i.expiresAt) <= 0}
 			>
-				Expires at {i.expiresAt.toLocaleDateString()}
+				Expire{i.expiresAt < new Date() ? 'd' : 's'} at {i.expiresAt.toLocaleDateString()}
 			</span>
 		{/if}
 	</div>
