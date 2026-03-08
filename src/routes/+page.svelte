@@ -19,12 +19,6 @@
 		}
 	}
 
-	$: onSelectedTagsChange(selectedTags);
-
-	function onSelectedTagsChange(_: string[]) {
-		$query.refetch();
-	}
-
 	const query = createQuery({
 		queryKey: ['locations', selectedTags],
 		queryFn: () => LocationsRepo.index(selectedTags),
