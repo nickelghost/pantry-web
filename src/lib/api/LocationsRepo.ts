@@ -42,7 +42,8 @@ export default class LocationsRepo {
 		const res = await fetch(`${API_URL}/locations`, {
 			method: 'POST',
 			headers: {
-				Authorization: `Bearer ${accessToken}`
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ name })
 		});
@@ -55,7 +56,8 @@ export default class LocationsRepo {
 		const res = await fetch(`${API_URL}/locations/${id}`, {
 			method: 'PUT',
 			headers: {
-				Authorization: `Bearer ${accessToken}`
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({ name })
 		});
