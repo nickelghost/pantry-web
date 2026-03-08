@@ -19,9 +19,7 @@
 		const formData = new FormData(e.target as HTMLFormElement);
 
 		const priceStr = formData.get('price') as string;
-		const price: number | null = priceStr
-			? parseInt(/[\.\,]/.test(priceStr) ? priceStr.replace(/[\.\,]/g, '') : priceStr + '00')
-			: null;
+		const price: number | null = priceStr ? Math.round(parseFloat(priceStr) * 100) : null;
 
 		const fields: ItemFormFields = {
 			name: formData.get('name') as string,

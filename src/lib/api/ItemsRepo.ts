@@ -23,7 +23,7 @@ class ItemsRepo {
 		const accessToken = await getAccessToken();
 		const res = await fetch(`${API_URL}/items`, {
 			method: 'POST',
-			headers: { Authorization: `Bearer ${accessToken}` },
+			headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
 			body: JSON.stringify(fields)
 		});
 		if (!res.ok) throw new Error(res.statusText);
@@ -33,7 +33,7 @@ class ItemsRepo {
 		const accessToken = await getAccessToken();
 		const res = await fetch(`${API_URL}/items/${id}`, {
 			method: 'PUT',
-			headers: { Authorization: `Bearer ${accessToken}` },
+			headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
 			body: JSON.stringify(fields)
 		});
 		if (!res.ok) throw new Error(res.statusText);
@@ -43,7 +43,7 @@ class ItemsRepo {
 		const accessToken = await getAccessToken();
 		const res = await fetch(`${API_URL}/items/${id}/location`, {
 			method: 'PATCH',
-			headers: { Authorization: `Bearer ${accessToken}` },
+			headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
 			body: JSON.stringify({ locationId })
 		});
 		if (!res.ok) throw new Error(res.statusText);
@@ -53,7 +53,7 @@ class ItemsRepo {
 		const accessToken = await getAccessToken();
 		const res = await fetch(`${API_URL}/items/${id}`, {
 			method: 'DELETE',
-			headers: { Authorization: `Bearer ${accessToken}` }
+			headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' }
 		});
 		if (!res.ok) throw new Error(res.statusText);
 	}
