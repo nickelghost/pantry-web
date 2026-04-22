@@ -43,5 +43,10 @@
 		"normalize.css": "^8.0.1",
 		"svelte-simple-modal": "^2.0.0",
 		"zod": "^4.3.6"
+	},
+	"pnpm": {
+		"overrides": {
+			"cookie@<0.7.0": ">=0.7.0"
+		}
 	}
 }
