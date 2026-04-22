@@ -28,7 +28,7 @@
 	}
 </script>
 
-<div class="container" role="dialog" on:mouseleave={() => (isShowing = false)}>
+<div class="container" role="group" on:mouseleave={() => (isShowing = false)}>
 	<IconButton
 		on:click={() => {
 			isShowing = !isShowing;
@@ -36,17 +36,19 @@
 	>
 
 	{#if isShowing && query.data}
-		<ul class="list">
+		<ul class="list" role="menu">
 			{#each query.data.locations as location}
 				{#if location.id !== i.locationId}
 					<li>
-						<button on:click={(e) => onClick(e, location.id)}>{location.name}</button>
+						<button role="menuitem" on:click={(e) => onClick(e, location.id)}
+							>{location.name}</button
+						>
 					</li>
 				{/if}
 			{/each}
 			{#if i.locationId !== null}
 				<li>
-					<button on:click={(e) => onClick(e, null)}>None</button>
+					<button role="menuitem" on:click={(e) => onClick(e, null)}>None</button>
 				</li>
 			{/if}
 		</ul>
