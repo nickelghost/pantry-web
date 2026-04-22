@@ -16,7 +16,7 @@
 	<select name="locationId">
 		<option selected={!value} value="">None</option>
 		{#if query.data}
-			{#each query.data.locations as location}}
+			{#each query.data.locations as location (location.id)}}
 				<option selected={value == location.id} value={location.id}>{location.name}</option>
 			{/each}
 		{/if}

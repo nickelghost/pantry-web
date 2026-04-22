@@ -1,18 +1,17 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	export let label: string = '';
-	export let error: string | null | undefined = undefined;
-
-	interface $$Props extends HTMLInputAttributes {
+	interface Props extends HTMLInputAttributes {
 		label: string;
-		error: string | undefined | null;
+		error?: string | null;
 	}
+
+	let { label = '', error = undefined, ...restProps }: Props = $props();
 </script>
 
 <label>
 	{label}
-	<input {...$$restProps} />
+	<input {...restProps} />
 	{#if error}
 		<div class="error">
 			{error}

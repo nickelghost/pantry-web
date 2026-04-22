@@ -76,7 +76,7 @@
 
 {#if i.tags}
 	<ul class="tags">
-		{#each i.tags as tag}
+		{#each i.tags as tag (tag)}
 			<li class="tag" class:tag-selected={selectedTags.includes(tag)}>
 				<button
 					on:click={() => {

@@ -37,7 +37,7 @@
 
 	{#if isShowing && query.data}
 		<ul class="list" role="menu">
-			{#each query.data.locations as location}
+			{#each query.data.locations as location (location.id)}
 				{#if location.id !== i.locationId}
 					<li>
 						<button role="menuitem" on:click={(e) => onClick(e, location.id)}

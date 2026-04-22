@@ -38,7 +38,7 @@
 
 	{#if tags.length > 0}
 		<div class="tags">
-			{#each tags as tag, i}
+			{#each tags as tag, i (tag)}
 				<div class="tag">
 					#{tag}
 					<input style="display: none;" {name} value={tag} readonly />

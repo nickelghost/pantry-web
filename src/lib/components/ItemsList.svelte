@@ -8,7 +8,7 @@
 
 {#if items && items.length > 0}
 	<ul>
-		{#each items as i}
+		{#each items as i (i.id)}
 			<li>
 				<ItemCard {i} {selectedTags} on:update on:toggleTag />
 			</li>

@@ -38,7 +38,7 @@
 {:else if query.isError}
 	<p>Error: {query.error.message}</p>
 {:else if query.isSuccess && query.data}
-	{#each query.data.locations as l}
+	{#each query.data.locations as l (l.id)}
 		<LocationSection {l} onEdit={query.refetch} onDelete={query.refetch}>
 			<ItemsList
 				items={l.items}
