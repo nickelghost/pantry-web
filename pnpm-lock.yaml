@@ -27,8 +27,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       svelte-simple-modal:
-        specifier: ^1.6.2
-        version: 1.6.2(svelte@5.53.7)
+        specifier: ^2.0.0
+        version: 2.0.0(svelte@5.53.7)
       zod:
         specifier: ^3.25.76
         version: 3.25.76
@@ -1727,8 +1727,8 @@ packages:
       typescript:
         optional: true
 
-  svelte-simple-modal@1.6.2:
-    resolution: {integrity: sha512-cRjpqjZTH0rU5G+SRhUDHOV6TISQs6AnEW/Z7D5uXiz5V/3axrBYcBCPnKMI2Z0EyXmpwPXK4q9grroQTL6rhQ==}
+  svelte-simple-modal@2.0.0:
+    resolution: {integrity: sha512-Rm7MnyL5lsTpai1aRtdq2Gku1VxrGYu1R//ygV3HIdzK1EuJeU6r+fAKc8sq8GMvL0wukaa9mnwBlrcoc2tXzg==}
     peerDependencies:
       svelte: '>=5.53.5'
 
@@ -3648,7 +3648,7 @@ snapshots:
       postcss-load-config: 3.1.4(postcss@8.5.8)
       typescript: 5.9.3
 
-  svelte-simple-modal@1.6.2(svelte@5.53.7):
+  svelte-simple-modal@2.0.0(svelte@5.53.7):
     dependencies:
       svelte: 5.53.7
 
