@@ -12,11 +12,11 @@
 
 	const dispatch = createEventDispatcher();
 
-	const query = createQuery({
+	const query = createQuery(() => ({
 		queryKey: ['locations'],
 		queryFn: () => LocationsRepo.index(),
 		refetchOnWindowFocus: true
-	});
+	}));
 
 	async function onClick(e: MouseEvent, id: string | null) {
 		e.preventDefault();
@@ -35,9 +35,9 @@
 		}}>➡️</IconButton
 	>
 
-	{#if isShowing && $query.data}
+	{#if isShowing && query.data}
 		<ul class="list">
-			{#each $query.data.locations as location}
+			{#each query.data.locations as location}
 				{#if location.id !== i.locationId}
 					<li>
 						<button on:click={(e) => onClick(e, location.id)}>{location.name}</button>

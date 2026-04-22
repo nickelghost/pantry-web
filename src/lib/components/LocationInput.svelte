@@ -4,19 +4,19 @@
 
 	export let value: string | null = null;
 
-	const query = createQuery({
+	const query = createQuery(() => ({
 		queryKey: ['locations'],
 		queryFn: LocationsRepo.index,
 		refetchOnWindowFocus: true
-	});
+	}));
 </script>
 
 <label>
 	Location
 	<select name="locationId">
 		<option selected={!value} value="">None</option>
-		{#if $query.data}
-			{#each $query.data.locations as location}}
+		{#if query.data}
+			{#each query.data.locations as location}}
 				<option selected={value == location.id} value={location.id}>{location.name}</option>
 			{/each}
 		{/if}

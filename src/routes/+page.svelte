@@ -19,42 +19,42 @@
 		}
 	}
 
-	const query = createQuery({
+	const query = createQuery(() => ({
 		queryKey: ['locations', selectedTags],
 		queryFn: () => LocationsRepo.index(selectedTags),
 		refetchOnWindowFocus: true
-	});
+	}));
 </script>
 
 <Section>
 	<ButtonGroup>
-		<CreateLocationButton on:create={() => $query.refetch()} />
-		<CreateItemButton on:create={() => $query.refetch()} />
+		<CreateLocationButton on:create={() => query.refetch()} />
+		<CreateItemButton on:create={() => query.refetch()} />
 	</ButtonGroup>
 </Section>
 
-{#if $query.isLoading}
+{#if query.isLoading}
 	<LoadingIndicator />
-{:else if $query.isError}
-	<p>Error: {$query.error.message}</p>
-{:else if $query.isSuccess && $query.data}
-	{#each $query.data.locations as l}
-		<LocationSection {l} onEdit={$query.refetch} onDelete={$query.refetch}>
+{:else if query.isError}
+	<p>Error: {query.error.message}</p>
+{:else if query.isSuccess && query.data}
+	{#each query.data.locations as l}
+		<LocationSection {l} onEdit={query.refetch} onDelete={query.refetch}>
 			<ItemsList
 				items={l.items}
 				{selectedTags}
-				on:update={() => $query.refetch()}
+				on:update={() => query.refetch()}
 				on:toggleTag={(e) => toggleTag(e.detail)}
 			/>
 		</LocationSection>
 	{/each}
 
-	{#if $query.data.remainingItems.length > 0}
+	{#if query.data.remainingItems.length > 0}
 		<Section>
 			<ItemsList
-				items={$query.data.remainingItems}
+				items={query.data.remainingItems}
 				{selectedTags}
-				on:update={() => $query.refetch()}
+				on:update={() => query.refetch()}
 				on:toggleTag={(e) => toggleTag(e.detail)}
 			/>
 		</Section>
